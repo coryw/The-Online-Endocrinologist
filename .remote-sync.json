@@ -1,0 +1,16 @@
+{
+  "transport": "ftp",
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "coryw.net",
+  "port": "21",
+  "target": "public_html/oe",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "coryw",
+  "password": "198908xp",
+  "watch": []
+}

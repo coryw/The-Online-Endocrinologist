@@ -4,6 +4,7 @@ namespace OE;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use OE\BloodSugar;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'type'
     ];
 
     /**
@@ -26,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+	 *	Returns patient's blood sugars
+	**/
+	public function sugars() {
+		return $this->hasMany('OE\Sugar')->orderby('reading_time');
+	}
+
 }

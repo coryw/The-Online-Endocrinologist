@@ -4,11 +4,28 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h1 class="panel-title">Register</h1></div>
                 <div class="panel-body">
+					Ready to get started? Just tell us who you are and you'll be on your way!<br><br>
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+
+						<div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Account Type</label>
+
+                            <div class="col-md-6">
+                                <select  id="type" type="text" class="form-control" name="type" required>
+									<option value="patient">Patient</option>
+									<option value="doctor">Doctor</option>
+								</select>
+                                @if ($errors->has('type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>

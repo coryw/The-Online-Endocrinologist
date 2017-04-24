@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -59,6 +60,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+									<li>
+                                        <a href="{{ route('home') }}">
+                                            Dashboard
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -77,11 +83,12 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+			@yield('content')
+		</div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
