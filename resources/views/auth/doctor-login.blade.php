@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h1 class="panel-title">User Login</h1></div>
+                <div class="panel-heading"><h1 class="panel-title">Doctor Login Portal</h1></div>
 				<br>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('doctor.login.submit') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </form>
-					<strong>Looking for the doctor login portal? <a href="{{ route('doctor.login') }}">Click here</a></strong>
+					<strong>Looking for the patient login portal? <a href="{{ route('login') }}">Click here</a></strong>
                 </div>
             </div>
         </div>

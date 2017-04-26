@@ -6,9 +6,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use OE\BloodSugar;
 
-class User extends Authenticatable
+class Doctor extends Authenticatable
 {
     use Notifiable;
+
+	protected $guard = 'doctor';
+	protected $table = 'doctors';
 
     /**
      * The attributes that are mass assignable.
@@ -28,11 +31,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-	/**
-	 *	Returns patient's blood sugars
-	**/
-	public function sugars() {
-		return $this->hasMany('OE\Sugar')->orderby('reading_time');
-	}
+
 
 }

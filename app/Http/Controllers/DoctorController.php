@@ -14,7 +14,7 @@ class DoctorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:doctor');
     }
 
     /**
@@ -26,10 +26,6 @@ class DoctorController extends Controller
     {
 		// Check to make sure user is a doctor.
 		$user = Auth::user();
-		if ($user->type == 'doctor')
-			return view('doctor.index');
-		else {
-			return back();
-		}
+		return view('doctor.index');
     }
 }

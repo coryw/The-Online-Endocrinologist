@@ -2,11 +2,12 @@
 
 namespace OE\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use OE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class DoctorLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+	public function showLoginForm() {
+		return view('auth.doctor-login');
+	}
 
     /**
      * Where to redirect users after login.
@@ -46,4 +51,19 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+	public function login(Request $request) {
+		// Validate form Database
+		$this->validate($request, [
+			'email' => 'required|email',
+			'password' => 'required|min:6'
+		]);
+		// Attempt to log doctor in
+		if (Auth::guard('doctor')->attempt(['email' => $request->email, 'password' => $request->password])) {
+			//return redirect()->intended(route('doctor.index'));
+			return redirect()->route('home');
+		}
+		else {
+			return redirect()->back()->withInput($request->only('email', 'remember'));
+		}
+	}
 }

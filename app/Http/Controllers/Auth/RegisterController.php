@@ -3,6 +3,7 @@
 namespace OE\Http\Controllers\Auth;
 
 use OE\User;
+use OE\Doctor;
 use OE\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,11 +63,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-			'type' => $data['type'],
-        ]);
+		if ($data['type'] == 'patient') {
+			return User::create([
+	            'name' => $data['name'],
+	            'email' => $data['email'],
+	            'password' => bcrypt($data['password']),
+	        ]);
+		}
+		else {
+			return Doctor::create([
+	            'name' => $data['name'],
+	            'email' => $data['email'],
+	            'password' => bcrypt($data['password']),
+	        ]);
+		}
+
     }
 }
